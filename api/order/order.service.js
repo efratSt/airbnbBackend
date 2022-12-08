@@ -10,10 +10,7 @@ async function query(filterBy) {
     try {
         const criteria = _buildCriteria(filterBy)
         const collection = await dbService.getCollection('order')
-
         var orders = await collection.find(criteria).toArray()
-
-        console.log('orders: ', orders);
         return orders
     } catch (err) {
         logger.error('cannot find orders', err)
@@ -38,8 +35,12 @@ async function getById(orderId) {
 
 async function update(order) {
     try {
+        var id = ObjectId(order._id)
+        delete order._id
         const collection = await dbService.getCollection('order')
-        await collection.updateOne({ _id: ObjectId(order._id) }, { $set: order })
+        await collection.updateOne({ _id: id}, { $set: {...order} })
+        console.log('FROM SERVICE',order);
+        order._id = id
         return order
     } catch (err) {
         logger.error(`cannot update order ${order._id}`, err)
@@ -82,7 +83,9 @@ function _buildCriteria(filterBy) {
 
     const criteria = {}
     if (filterBy.hostId) criteria.hostId = filterBy.hostId
-    if (filterBy.buyerId) criteria.buyer = {_id: buyerId}
+    if (filterBy.buyerId) criteria.byUserId = filterBy.buyerId
+    // if (filterBy.buyerId) criteria.buyer = {_id: buyerId}
+    // if (filterBy.buyerId) criteria.buyerId = {_id: filterBy.buyerId}
     return criteria
 }
 
