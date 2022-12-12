@@ -18,6 +18,31 @@ async function query(filterBy) {
     }
 }
 
+function _buildCriteria(filterBy) {
+    const criteria = {}
+    if (filterBy.hostId) criteria.hostId = filterBy.hostId
+    if (filterBy.buyerId) criteria.byUserId = filterBy.buyerId
+    return criteria
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 async function getById(orderId) {
     try {
@@ -78,13 +103,6 @@ async function add(order) {
     }
 }
 
-function _buildCriteria(filterBy) {
-
-    const criteria = {}
-    if (filterBy.hostId) criteria.hostId = filterBy.hostId
-    if (filterBy.buyerId) criteria.byUserId = filterBy.buyerId
-    return criteria
-}
 
 module.exports = {
     query,
