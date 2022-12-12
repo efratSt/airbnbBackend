@@ -16,7 +16,6 @@ async function query(filterBy) {
         logger.error('cannot find orders', err)
         throw err
     }
-
 }
 
 
@@ -84,8 +83,6 @@ function _buildCriteria(filterBy) {
     const criteria = {}
     if (filterBy.hostId) criteria.hostId = filterBy.hostId
     if (filterBy.buyerId) criteria.byUserId = filterBy.buyerId
-    // if (filterBy.buyerId) criteria.buyer = {_id: buyerId}
-    // if (filterBy.buyerId) criteria.buyerId = {_id: filterBy.buyerId}
     return criteria
 }
 
