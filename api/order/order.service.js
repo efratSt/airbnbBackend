@@ -11,9 +11,6 @@ async function query(filterBy) {
         const criteria = _buildCriteria(filterBy)
         const collection = await dbService.getCollection('order')
         var orders = await collection.find(criteria).toArray()
-        
-        console.log('orders: ', orders);
-        console.log('filterBy: ', filterBy);
         return orders
     } catch (err) {
         logger.error('cannot find orders', err)
