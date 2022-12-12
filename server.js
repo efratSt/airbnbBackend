@@ -45,16 +45,16 @@ app.get("/**", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-const logger = require("./services/logger.service");
+// const logger = require("./services/logger.service");
 
 
 const port = process.env.PORT || 3030;
-// app.listen(port, () => {
-//   console.log(`App listening on port ${port}!`)
-// });
+app.listen(port, () => {
+  console.log(`App listening on port ${port}!`)
+});
 
 
 // const port = process.env.PORT || 3030;
-http.listen(port, () => {
-  logger.info("Server is running on port: " + port);
-});
+// http.listen(port, () => {
+//   logger.info("Server is running on port: " + port);
+// });
