@@ -45,7 +45,7 @@ app.get("/**", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// const logger = require("./services/logger.service");
+const logger = require("./services/logger.service");
 
 
 const port = process.env.PORT || 3030;
