@@ -5,6 +5,7 @@ const socketService = require('../../services/socket.service')
 const orderService = require('./order.service')
 
 async function getOrders(req, res) {
+  console.log('Getting Orders')
     try {
         const orders = await orderService.query(req.query)
         res.send(orders)
