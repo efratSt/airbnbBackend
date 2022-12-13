@@ -26,14 +26,34 @@ function setupSocketAPI(http) {
     socket.on('set-user-socket', userId => {
         logger.info(`Setting socket.userId = ${userId}`)
         socket.userId = userId
-        console.log('try set user');
     })
 
     socket.on('unset-user-socket', () => {
         logger.info('Removing socket.userId for')
         delete socket.userId
-        console.log('try unsetUser');
     })
+
+
+
+
+//פה נצטרך גם לקבל את ההוסט איידי כדי שנדע למי לשלוח סוקאט
+//אז בעצם כאשר יעשו הזמנה נדביק מדבקה חדשה לסוקאט של ההוסט איידי ונעשה שישלח מודל
+
+    // socket.on(SOCKET_EVENT_ORDER_ADD , (userId) => {
+    //   logger.info(
+    //     `New order from socket [id: ${socket.id}]`
+    //   );
+    //   gIo.to(socket.myTopic).emit("chat-add-msg", msg);
+    // });
+
+
+
+
+
+
+
+
+
 
     socket.on("chat-set-topic", (topic) => {
       if (socket.myTopic === topic) return;
